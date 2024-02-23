@@ -38,6 +38,15 @@ void display(struct node *ptr)
         display(ptr->next);
     }
 } */
+//using recursive display elements in revese order
+/* void display(struct node *ptr)
+{
+    if(ptr!=NULL)
+    {
+        display(ptr->next);
+        printf("%d ",ptr->data);
+    }
+} */
 int main() {
     int arr[]={1,2,3,4,5};
     int size=sizeof(arr)/sizeof(arr[0]);
