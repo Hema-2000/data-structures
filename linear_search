@@ -1,0 +1,71 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+#include <stdlib.h>
+struct node {
+    int data;
+    struct node *next;
+}*head;
+void create(int *arr,int size)
+{
+    struct node *temp,*last;
+    head=(struct node*)malloc(sizeof(struct node));
+    head->data=arr[0];
+    head->next=NULL;
+    last=head;
+    for(int i=1;i<size;i++)
+    {
+        temp=(struct node*)malloc(sizeof(struct node));
+        temp->data=arr[i];
+        temp->next=NULL;
+        last->next=temp;
+        last=temp;
+    }
+}
+struct node * Lsearch(struct node *p,int key)
+{
+    while(p!=NULL)
+    {
+        if(key==p->data)
+         return p;
+        p=p->next;
+       
+    }
+      return NULL;
+}
+struct node * rec_Lsearch(struct node *p,int key)
+{
+   if(p==NULL)
+   return NULL;
+   if(key==p->data)
+   return p;
+   return rec_Lsearch(p->next,key);
+   
+}
+
+int main() {
+    int arr[]={1,2,3,4,5};
+    struct node *tmp,*tmp1;
+    int key;
+    printf("enter the key");
+    scanf("%d",&key);
+    int size=sizeof(arr)/sizeof(arr[0]);
+    create(arr,size);
+   
+    tmp=Lsearch(head ,key);
+    if(tmp)
+    printf("element is found is %d",tmp->data);
+    else
+    printf("element is not found");
+   
+  //recursive method
+
+   tmp1=rec_Lsearch(head ,key);
+    if(tmp1)
+    printf("\nelement is found is %d",tmp1->data);
+    else
+    printf("element is not found");
+    
+    
+    
+    return 0;
+}
