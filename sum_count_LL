@@ -1,0 +1,67 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+#include <stdlib.h>
+struct node {
+    int data;
+    struct node *next;
+}*head;
+void create(int *arr,int size)
+{
+    struct node *temp,*last;
+    head=(struct node*)malloc(sizeof(struct node));
+    head->data=arr[0];
+    head->next=NULL;
+    last=head;
+    for(int i=1;i<size;i++)
+    {
+        temp=(struct node*)malloc(sizeof(struct node));
+        temp->data=arr[i];
+        temp->next=NULL;
+        last->next=temp;
+        last=temp;
+    }
+}
+int count(struct node *ptr)
+{
+    int c=0;
+    while(ptr!=NULL)
+    {
+        c++;
+        ptr=ptr->next;
+    }
+    return c;
+}
+int recur_count(struct node *ptr)
+{
+    if(ptr!=NULL)
+    return recur_count(ptr->next)+1;
+    else
+    return 0;
+}
+int sum(struct node *ptr)
+{
+    int s=0;
+    while(ptr!=NULL)
+    {
+        s+=ptr->data;
+        ptr=ptr->next;
+    }
+    return s;
+}
+int recur_sum(struct node *ptr)
+{
+    if(ptr!=NULL)
+    return recur_sum(ptr->next) + ptr->data;
+    else
+    return 0;
+}
+int main() {
+    int arr[]={1,2,3,4,5};
+    int size=sizeof(arr)/sizeof(arr[0]);
+    create(arr,size);
+    printf("the no. of nodes in a linked list is %d",count(head));
+    printf("\nthe no. of nodes in a linked list is %d",recur_count(head));
+    printf("\n the sum of elements in a LL is %d",sum(head));
+    printf("\n the sum of elements in a LL is %d",recur_sum(head));
+    return 0;
+}
