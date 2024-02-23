@@ -29,6 +29,15 @@ void display(struct node *ptr)
         ptr=ptr->next;
     }
 }
+//recursive display function
+/* void display(struct node *ptr)
+{
+    if(ptr!=NULL)
+    {
+        printf("%d ",ptr->data);
+        display(ptr->next);
+    }
+} */
 int main() {
     int arr[]={1,2,3,4,5};
     int size=sizeof(arr)/sizeof(arr[0]);
