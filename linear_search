@@ -41,7 +41,24 @@ struct node * rec_Lsearch(struct node *p,int key)
    return rec_Lsearch(p->next,key);
    
 }
-
+//if key node found then move that node to starting then it is easier to search the same key for next time
+struct node *mov_to_head(struct node *p, int key)
+{
+    struct node *q=NULL;
+    while(p!=NULL)
+    {
+        if(key==p->data)
+        {
+            q->next=p->next;
+            p->next=head;
+            head=p;
+            return p;
+        }
+        q=p;
+        p=p->next;
+    }
+     return NULL;
+}
 int main() {
     int arr[]={1,2,3,4,5};
     struct node *tmp,*tmp1;
